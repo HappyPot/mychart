@@ -1,15 +1,15 @@
 <template>
   <div class="wrap">
 
-    <div class="container flex align-middle">
+    <div class="flex align-middle">
       <!-- 左边 -->
-      <div class="aside_left w-[20%] p-[1vw] h-[100vh]">
-        <div class="w-[60%] m-auto">
-          <el-button :icon="Plus" plain>New Chat</el-button>
+      <div class="aside_left min-w-[220px] w-[20%] p-[1vw] h-[100vh]">
+        <div class=" m-auto">
+          <el-button :icon="Plus" class="flex w-[11vw] m-auto" plain>New Chat</el-button>
         </div>
       </div>
       <!-- 右边 -->
-      <div class="aside_right  w-[80%] p-[0.5vw] pl-[1vw] pr-[1vw]">
+      <div class="aside_right w-[80%] p-[0.5vw] pl-[1vw] pr-[1vw]">
         <!-- 导航 -->
         <div class="nav flex justify-between items-center">
           <div class="flex items-center">
@@ -20,10 +20,16 @@
             <Sunny style="width: 1.5em; height: 2em; " v-if="!isDark" />
             <Moon style="width: 1.5em; height: 2em; " class="bg-black" v-else />
           </div>
-          <!-- 内容 -->
+
+
+        </div>
+        <!-- 内容 -->
+        <div class="mt-[1vh]">
+          <!-- 问题列表 -->
+          <div class="w-[99%] bg-[red] m-auto h-[20vh]">啊啊啊</div>
+          <!-- 输入框 -->
           <div></div>
         </div>
-
       </div>
     </div>
 
