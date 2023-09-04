@@ -26,7 +26,7 @@
         <!-- 内容 -->
         <div class="mt-[1vh]">
           <!-- 问题列表 -->
-          <div class="w-[99%] bg-[red] m-auto h-[20vh]">啊啊啊</div>
+          <div class="w-[99%] bg-[white] m-auto h-[20vh]">啊啊啊</div>
           <!-- 输入框 -->
           <div></div>
         </div>
