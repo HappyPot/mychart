@@ -1,7 +1,7 @@
 <template>
   <!--  -->
-  <div class="wrap">
-    <div class="nav"></div>
+  <div class="wrap h-[100vw] bg-red-50">
+    <div class="nav dark"></div>
     <div class="container">
       <!-- 左边 -->
       <div class="aside_left"></div>
@@ -21,6 +21,5 @@ const count = ref(0);
 </script>
 <style scoped>
 .aside_left{
-  width: ;
 }
 </style>
