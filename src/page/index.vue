@@ -1,4 +1,15 @@
-<template>aaaa</template>
+<template>
+  <!--  -->
+  <div class="wrap">
+    <div class="nav"></div>
+    <div class="container">
+      <!-- 左边 -->
+      <div class="aside_left"></div>
+      <!-- 右边 -->
+      <div class="aside_right"></div>
+    </div>
+  </div>
+</template>
 <script setup>
 import { ref } from "vue";
 
@@ -9,7 +20,7 @@ defineProps({
 const count = ref(0);
 </script>
 <style scoped>
-.read-the-docs {
-  color: #888;
+.aside_left{
+  width: ;
 }
 </style>
