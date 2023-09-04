@@ -3,19 +3,25 @@
 
     <div class="container flex align-middle">
       <!-- 左边 -->
-      <div class="aside_left w-[20%]">
-        <el-button :icon="Plus" class="w-[50%]" style="margin: 0 auto;" plain>New Chat</el-button>
+      <div class="aside_left w-[20%] p-[1vw] h-[100vh]">
+        <div class="w-[60%] m-auto">
+          <el-button :icon="Plus" plain>New Chat</el-button>
+        </div>
       </div>
       <!-- 右边 -->
-      <div class="aside_right  w-[80%]">
+      <div class="aside_right  w-[80%] p-[0.5vw] pl-[1vw] pr-[1vw]">
         <!-- 导航 -->
-        <div class="nav">
-          <div class="cursor-pointer" @click="toggle()">
+        <div class="nav flex justify-between items-center">
+          <div class="flex items-center">
+            <el-image style="width: 35px; height: 35px;border-radius: 100%;" :src="url" :fit="fit" />
+            <span class="ml-2 text-[#666666]">Jumms</span>
+          </div>
+          <div class="cursor-pointer " @click="toggle()">
             <Sunny style="width: 1.5em; height: 2em; " v-if="!isDark" />
             <Moon style="width: 1.5em; height: 2em; " class="bg-black" v-else />
           </div>
           <!-- 内容 -->
-          <div class="bg-#f8f8f8">bbbb</div>
+          <div></div>
         </div>
 
       </div>
@@ -27,8 +33,10 @@
 import { ref } from "vue";
 import { useToggle } from '@vueuse/shared'
 import { useDark } from "@vueuse/core";
-import { Sunny, Moon,Plus } from '@element-plus/icons-vue'
+import { Sunny, Moon, Plus } from '@element-plus/icons-vue'
 const theme = ref(false)
+const url =
+  'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
 const isDark = useDark({
   // 存储到localStorage/sessionStorage中的Key 根据自己的需求更改
   storageKey: 'useDarkKEY',
