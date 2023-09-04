@@ -1,4 +1,19 @@
-.light{
-    .aside_left{
+.light {
+    .aside_left {
+        background: #fff;
+    }
+
+    .aside_right {
+        background: #f8f8fc;
+    }
+}
+
+.dark {
+    .aside_left {
+        background: #313131;
+    }
+
+    .aside_right {
+        background: #121212;
     }
 }

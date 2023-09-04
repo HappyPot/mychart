@@ -4,10 +4,10 @@
     <div class="container flex align-middle">
       <!-- 左边 -->
       <div class="aside_left w-[20%]">
-        <el-button :icon="Plus" class="w-[50%] m-auto" plain>New Chat</el-button>
+        <el-button :icon="Plus" class="w-[50%]" style="margin: 0 auto;" plain>New Chat</el-button>
       </div>
       <!-- 右边 -->
-      <div class="aside_right bg-[#f8f8fc] w-[80%]">
+      <div class="aside_right  w-[80%]">
         <!-- 导航 -->
         <div class="nav">
           <div class="cursor-pointer" @click="toggle()">
