@@ -2,13 +2,18 @@
   <div class="wrap h-[100vw]">
     <div class="demo">
       <div>这是一个深色模式的切换demo</div>
-      <el-switch inline-prompt v-model="theme" @click="toggle()">
-      </el-switch>
     </div>
-    <div class="nav dark"></div>
+    <div class="nav">
+      <div class="cursor-pointer" @click="toggle()">
+        <Sunny style="width: 1.5em; height: 2em; " v-if="!isDark" />
+        <Moon style="width: 1.5em; height: 2em; " class="bg-black" v-else />
+      </div>
+    </div>
     <div class="container">
       <!-- 左边 -->
-      <div class="aside_left"></div>
+      <div class="aside_left">
+
+      </div>
       <!-- 右边 -->
       <div class="aside_right"></div>
     </div>
@@ -18,7 +23,7 @@
 import { ref } from "vue";
 import { useToggle } from '@vueuse/shared'
 import { useDark } from "@vueuse/core";
-
+import { Sunny, Moon } from '@element-plus/icons-vue'
 const theme = ref(false)
 const isDark = useDark({
   // 存储到localStorage/sessionStorage中的Key 根据自己的需求更改
@@ -28,8 +33,6 @@ const isDark = useDark({
   // 高亮class名字
   valueLight: 'light',
 })
-
 const toggle = useToggle(isDark);
-
 </script>
 <style scoped></style>
