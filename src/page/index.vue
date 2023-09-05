@@ -66,8 +66,9 @@
         <!-- 内容 -->
         <div class=" mt-[3vh]">
           <!-- 问题列表 -->
-          <div class="my_question p-[2vw]" style="border-radius: 16px;">
-            <div class="my_question  my_scroll_right  bg-[white]  h-[100vh]  max-h-[600px] overflow-auto"
+          <div class="my_question p-[2vw] pr-[1.5vw]" style="border-radius: 16px;">
+            <div ref="scrollContainer"
+              class="my_question pr-[0.5vw]  my_scroll_right  bg-[white]  h-[100vh]  max-h-[600px] overflow-auto"
               style="border-radius: 16px;">
               <div v-for="(item, index) in qaList" :key="index">
                 <div class="mb-[1.5vh]" v-if="item.type == 'q'">
@@ -119,7 +120,7 @@
   </div>
 </template>
 <script setup>
-import { onMounted, ref, reactive } from "vue";
+import { onMounted, ref, reactive, nextTick } from "vue";
 import { useToggle } from '@vueuse/shared'
 import { useDark } from "@vueuse/core";
 import { Sunny, Moon, Plus } from '@element-plus/icons-vue'
@@ -224,6 +225,9 @@ const putQuestions = () => {
         type: "a",
         value: "yes"
       })
+      nextTick(() => {
+        scrollToBottom();
+      });
     }, 1000)
   }
 }
@@ -252,6 +256,14 @@ const deleteHistory = () => {
   //调用删除接口，删除成功后再调用回去历史记录列表
   getHistoryList()
 
+}
+/**
+ * 控制滚动条
+ */
+const scrollContainer = ref(null)
+const scrollToBottom = () => {
+  const container = scrollContainer.value;
+  container.scrollTop = container.scrollHeight;
 }
 </script>
 <style scoped>
