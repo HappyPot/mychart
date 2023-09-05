@@ -36,7 +36,7 @@
               </div>
             </div>
             <el-divider />
-            <el-button style="width: 200px; margin: 0 auto; display: flex;" type="success" size="large" plain> Upgrade to
+            <el-button style="width: 200px; margin: 0 auto; display: flex;" type="success" size="large"> Upgrade to
               plus
               now</el-button>
             <div class="font-semibold text-center " style="width: 200px; margin: 0 auto;margin-top: 1vh;">
@@ -356,7 +356,7 @@ const selectRecord = (index) => {
 .empty_item_line {
   padding: 0.5vw;
   border-radius: 16px;
-  background: #fff;
+
   margin: 0.5vw 0;
 }
 </style>

@@ -61,6 +61,10 @@
     .empty_item {
         background: #f8f8fc;
     }
+
+    .empty_item_line {
+        background: #fff;
+    }
 }
 
 .dark {
@@ -124,5 +128,9 @@
 
     .empty_item {
         background: #121212;
+    }
+
+    .empty_item_line {
+        background: #313131;
     }
 }
