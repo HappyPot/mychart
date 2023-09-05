@@ -249,8 +249,9 @@ const register = () => {
  * 删除历史消息
  */
 const deleteHistory = () => {
-  //调用删除接口
-  alert(1)
+  //调用删除接口，删除成功后再调用回去历史记录列表
+  getHistoryList()
+
 }
 </script>
 <style scoped>
