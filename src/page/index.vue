@@ -18,7 +18,9 @@
           </div>
           <div class="mt-[2vh]">
             <div class="max-h-[653px] overflow-auto h-[100vh] my_scroll_left">
-              <div class="flex items-center min-h-[6vh] cursor-pointer" v-for="(item, index) in historyList" :key="i">
+              <div class="flex items-center min-h-[6vh] cursor-pointer" :class="item.checked ? 'text-[#409eff]' : ''"
+                v-for="(item, index) in historyList" :key="index" @click="selectRecord(index)">
+
                 <ChatSquare style="width: 24px; height: 32px; color:#666666;margin-right: 1vw;" />
                 <div class="max-w-[260px] truncate">{{ item.title }}
                 </div>
@@ -70,19 +72,75 @@
             <div ref="scrollContainer"
               class="my_question pr-[0.5vw]  my_scroll_right  bg-[white]  h-[100vh]  max-h-[600px] overflow-auto"
               style="border-radius: 16px;">
-              <div v-for="(item, index) in qaList" :key="index">
-                <div class="mb-[1.5vh]" v-if="item.type == 'q'">
-                  <el-tag effect="dark" round type="success">问题：</el-tag>
-                  <div class="p-[0.5vw]">{{ item.value }}</div>
-                </div>
-                <div class="my_answer p-[1vw] mb-[1.5vh]" style="border-radius: 16px;" v-if="item.type == 'a'">
-                  <div class="">
-                    <el-tag effect="dark" round>回答：</el-tag>
+              <template v-if="qaList.length > 0">
+                <div v-for="(item, index) in qaList" :key="index">
+                  <div class="mb-[1.5vh]" v-if="item.type == 'q'">
+                    <el-tag effect="dark" round type="success">问题：</el-tag>
+                    <div class="p-[0.5vw]">{{ item.value }}</div>
                   </div>
-                  <div class="p-[0.5vw]">{{ item.value }}</div>
+                  <div class="my_answer p-[1vw] mb-[1.5vh]" style="border-radius: 16px;" v-if="item.type == 'a'">
+                    <div class="">
+                      <el-tag effect="dark" round>回答：</el-tag>
+                    </div>
+                    <div class="p-[0.5vw]">{{ item.value }}</div>
+                  </div>
+                </div>
+              </template>
+              <div v-else class="flex items-center justify-around">
+                <div class="empty_item   p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px;">
+                  <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
+                  <div class="mt-[2vh]">
+                    <div class="empty_item_line">
+                      1,An advanced online playground for Tailwind CSS,
+                    </div>
+                    <div class="empty_item_line">
+                      2,Customizing your tailwind.config.js file
+                    </div>
+                    <div class="empty_item_line">
+                      3,Extracting classes with @apply
+                    </div>
+                    <div class="empty_item_line">
+                      4,Code completion with instant preview
+                    </div>
+                  </div>
+                </div>
+                <div class="empty_item   p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px;">
+                  <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
+                  <div class="mt-[2vh]">
+                    <div class="empty_item_line">
+                      1,An advanced online playground for Tailwind CSS,
+                    </div>
+                    <div class="empty_item_line">
+                      2,Customizing your tailwind.config.js file
+                    </div>
+                    <div class="empty_item_line">
+                      3,Extracting classes with @apply
+                    </div>
+                    <div class="empty_item_line">
+                      4,Code completion with instant preview
+                    </div>
+                  </div>
+                </div>
+                <div class="empty_item   p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px;">
+                  <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
+                  <div class="mt-[2vh]">
+                    <div class="empty_item_line">
+                      1,An advanced online playground for Tailwind CSS,
+                    </div>
+                    <div class="empty_item_line">
+                      2,Customizing your tailwind.config.js file
+                    </div>
+                    <div class="empty_item_line">
+                      3,Extracting classes with @apply
+                    </div>
+                    <div class="empty_item_line">
+                      4,Code completion with instant preview
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
           <!-- 输入框 -->
           <div class="mt-[4vh] flex items-center">
@@ -120,7 +178,7 @@
   </div>
 </template>
 <script setup>
-import { onMounted, ref, reactive, nextTick } from "vue";
+import { onMounted, ref, reactive, nextTick, toRaw } from "vue";
 import { useToggle } from '@vueuse/shared'
 import { useDark } from "@vueuse/core";
 import { Sunny, Moon, Plus } from '@element-plus/icons-vue'
@@ -197,11 +255,12 @@ const open = () => {
  */
 const getHistoryList = () => {
   // 假数据以下（编写接口位置）
-  let obj = {
-    title: `Element,一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库 指南
-            了解设计指南,帮助产品设计人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体`
-  }
   for (let i = 0; i < 2; i++) {
+    let obj = {
+      checked: false,
+      title: `Element,一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库 指南
+            了解设计指南,帮助产品设计人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体`
+    }
     historyList.value.push(obj)
   }
   // 假数据以上
@@ -265,6 +324,14 @@ const scrollToBottom = () => {
   const container = scrollContainer.value;
   container.scrollTop = container.scrollHeight;
 }
+/**
+ * 选择记录
+ */
+const selectRecord = (index) => {
+  historyList.value.map(item => item['checked'] = false)
+  historyList.value[index]["checked"] = true
+  console.log(toRaw(historyList.value))
+}
 </script>
 <style scoped>
 .dArrowLeft {
@@ -284,5 +351,12 @@ const scrollToBottom = () => {
 .aside_left,
 .aside_right {
   transition: 0.5s all ease;
+}
+
+.empty_item_line {
+  padding: 0.5vw;
+  border-radius: 16px;
+  background: #fff;
+  margin: 0.5vw 0;
 }
 </style>
