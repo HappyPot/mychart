@@ -1,34 +1,57 @@
 <template>
   <div class="wrap">
-
     <div class="flex align-middle">
+      <!-- class="aside_left min-w-[342px] w-[20%] pb-[2vh] pt-[2vh]  h-[100vh] pl-[1.5vw] pr-[1.5vw] relative overflow-hidden" -->
       <!-- 左边 -->
-      <div class="aside_left min-w-[342px] w-[20%] p-[1vw] h-[100vh] pl-[1.5vw] pr-[1.5vw]">
-        <div class=" m-auto">
-          <el-button type="primary" :icon="Plus" size="large" style="width: 200px; margin: 0 auto; display: flex;"
-            plain>New
-            Chat</el-button>
-        </div>
-        <div class="mt-[2vh]">
-          <div class="max-h-[653px] overflow-auto h-[100vh] my_scroll_left">
-            <div class="flex items-center min-h-[6vh] cursor-pointer" v-for="(item, index) in historyList" :key="i">
-              <ChatSquare style="width: 24px; height: 32px; color:#666666;margin-right: 1vw;" />
-              <div class="max-w-[260px] truncate">{{ item.title }}
+      <div class="aside_left min-w-[342px] w-[20%] pb-[2vh] pt-[2vh]  h-[100vh]  relative overflow-hidden"
+        :style="dArrowLeft">
+        <div class="max-w-[342px] min-w-[142px] mx-auto my-0">
+          <div class="dArrowLeft cursor-pointer" @click="packUp" v-if="!dArrowLeft">
+            <el-icon>
+              <DArrowLeft />
+            </el-icon>
+          </div>
+          <div class=" m-auto">
+            <el-button type="primary" :icon="Plus" size="large" style="width: 200px; margin: 0 auto; display: flex;"
+              plain>New
+              Chat</el-button>
+          </div>
+          <div class="mt-[2vh]">
+            <div class="max-h-[653px] overflow-auto h-[100vh] my_scroll_left">
+              <div class="flex items-center min-h-[6vh] cursor-pointer" v-for="(item, index) in historyList" :key="i">
+                <ChatSquare style="width: 24px; height: 32px; color:#666666;margin-right: 1vw;" />
+                <div class="max-w-[260px] truncate">{{ item.title }}
+                </div>
+                <el-popconfirm title="Are you sure to delete this?" @confirm="deleteHistory">
+                  <template #reference>
+                    <div class="cursor-pointer">
+                      <el-icon style="display:block">
+                        <CircleClose />
+                      </el-icon>
+                    </div>
+                  </template>
+                </el-popconfirm>
               </div>
             </div>
+            <el-divider />
+            <el-button style="width: 200px; margin: 0 auto; display: flex;" type="success" size="large" plain> Upgrade to
+              plus
+              now</el-button>
+            <div class="font-semibold text-center " style="width: 200px; margin: 0 auto;margin-top: 1vh;">
+              $20 per month
+            </div>
+            <el-divider />
           </div>
-          <el-divider />
-          <el-button style="width: 200px; margin: 0 auto; display: flex;" type="success" size="large" plain> Upgrade to
-            plus
-            now</el-button>
-          <div class="font-semibold text-center " style="width: 200px; margin: 0 auto;margin-top: 1vh;">
-            $20 per month
-          </div>
-          <el-divider />
         </div>
+
       </div>
       <!-- 右边 -->
-      <div class="aside_right w-[80%] p-[2.2vh] pl-[2vw] pr-[2vw] min-w-[900px]">
+      <div class="aside_right w-[80%] p-[2.2vh] pl-[2vw] pr-[2vw] min-w-[900px] relative" :style="dArrowRight">
+        <div class="dArrowRight cursor-pointer" @click="open" v-if="dArrowLeft">
+          <el-icon>
+            <DArrowRight />
+          </el-icon>
+        </div>
         <!-- 导航 -->
         <div class="nav flex justify-between items-center">
           <div class="flex items-center">
@@ -43,7 +66,7 @@
         <!-- 内容 -->
         <div class=" mt-[3vh]">
           <!-- 问题列表 -->
-          <div class="my_question p-[2vw]">
+          <div class="my_question p-[2vw]" style="border-radius: 16px;">
             <div class="my_question  my_scroll_right  bg-[white]  h-[100vh]  max-h-[600px] overflow-auto"
               style="border-radius: 16px;">
               <div v-for="(item, index) in qaList" :key="index">
@@ -62,8 +85,8 @@
           </div>
           <!-- 输入框 -->
           <div class="mt-[4vh] flex items-center">
-            <div class="w-[70vw] mr-[2vw]">
-              <el-input v-model="textarea" :rows="3.5" type="textarea" placeholder="Please input" />
+            <div class="w-[100%] mr-[2vw]">
+              <el-input v-model="questionValue" :rows="3.5" type="textarea" placeholder="Please input" />
             </div>
             <div>
               <el-button type="primary" size="large" @click="putQuestions">提问</el-button>
@@ -72,15 +95,35 @@
         </div>
       </div>
     </div>
+    <el-dialog v-model="centerDialogVisible" title="登录" width="30%" align-center>
+      <div class="pr-[2vw]">
+        <el-form :model="form" :rules="rules" label-width="120px">
+          <el-form-item label="用户名" prop="name">
+            <el-input v-model="form.name" />
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
+            <el-input type="password" v-model="form.password" />
+          </el-form-item>
+        </el-form>
+      </div>
+      <div class="text-center">
+        <el-button type="primary" @click="register">
+          注册
+        </el-button>
+        <el-button type="primary" @click="login">
+          登录
+        </el-button>
+      </div>
 
+    </el-dialog>
   </div>
 </template>
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, reactive } from "vue";
 import { useToggle } from '@vueuse/shared'
 import { useDark } from "@vueuse/core";
 import { Sunny, Moon, Plus } from '@element-plus/icons-vue'
-const theme = ref(false)
+import { ElMessage } from 'element-plus'
 const url =
   'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
 const isDark = useDark({
@@ -92,21 +135,67 @@ const isDark = useDark({
   valueLight: 'light',
 })
 const toggle = useToggle(isDark);
-
+// 登录需要传的参数
+const form = reactive({
+  name: '',
+  password: ""
+})
+// 表单校验规则
+const rules = reactive({
+  name: [
+    { required: true, message: 'Please input name', trigger: 'blur' },
+  ],
+  password: [
+    {
+      required: true,
+      message: 'Please input password',
+      trigger: 'blur',
+    },
+  ],
+})
+// 登录弹框控制
+const centerDialogVisible = ref(false)
 // 问答详情列表
 const qaList = ref([])
 // 历史提问列表
 const historyList = ref([])
+// 文本域问题
+const questionValue = ref(`Tailwind CSS works by scanning all of your HTML files, JavaScript components, and.`)
 
+//接入登陆接口时需要更新该变量，目前只是测试使用
+const token = ref("")
+
+// 1，进入页面加载
 onMounted(() => {
   getHistoryList()
 })
 
+const dArrowLeft = ref(null)
+const dArrowRight = ref(null)
+/**
+ * 收起
+ */
+const packUp = () => {
+  dArrowLeft.value = {
+    "width": 0,
+    "min-width": 0,
+  }
+  dArrowRight.value = {
+    "width": "100%"
+  }
+}
+/**
+ * 打开
+ */
+const open = () => {
+  dArrowLeft.value = null
+  dArrowRight.value = null
+}
 /**
  * 获取左侧历史提问列表
  */
 const getHistoryList = () => {
-  // 假数据
+  // 假数据以下（编写接口位置）
   let obj = {
     title: `Element,一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库 指南
             了解设计指南,帮助产品设计人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体`
@@ -114,26 +203,73 @@ const getHistoryList = () => {
   for (let i = 0; i < 2; i++) {
     historyList.value.push(obj)
   }
+  // 假数据以上
 }
 /**
  * 提问
  */
 const putQuestions = () => {
-  // 请求chatgpt接口返回数据
-  qaList.value.push({
-    type: "q",
-    value: `Tailwind CSS works by scanning all of your HTML files, JavaScript components, and
-    any
-    other templates
-    for class names, generating the corresponding styles and then writing them to a static CSS file.
-    It's fast, flexible, and reliable — with zero-runtime.`
-  })
-  setTimeout(() => {
+  // 如果token没有值，说明没有登录，需要提示用户登录
+  if (!token.value) {
+    centerDialogVisible.value = true
+    return
+  } else {
+    // 请求chatgpt接口返回数据（编写接口位置）
     qaList.value.push({
-      type: "a",
-      value: "yes"
+      type: "q",
+      value: questionValue.value
     })
-  }, 1000)
+    setTimeout(() => {
+      qaList.value.push({
+        type: "a",
+        value: "yes"
+      })
+    }, 1000)
+  }
+}
+/**
+ * 登录方法
+ */
+const login = () => {
+  // 调用登录接口,以下为模拟登录
+  token.value = form.name
+  centerDialogVisible.value = false
+  ElMessage({
+    message: '登录成功',
+    type: 'success',
+  })
+}
+/**
+ * 注册方法
+ */
+const register = () => {
+  // 调用注册接口
+}
+/**
+ * 删除历史消息
+ */
+const deleteHistory = () => {
+  //调用删除接口
+  alert(1)
 }
 </script>
-<style scoped></style>
+<style scoped>
+.dArrowLeft {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dArrowRight {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.aside_left,
+.aside_right {
+  transition: 0.5s all ease;
+}
+</style>
