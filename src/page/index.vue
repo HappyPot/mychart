@@ -58,7 +58,7 @@
         <!-- 导航 -->
         <div class="nav flex justify-between items-center">
           <div class="flex items-center">
-            <el-image style="width: 35px; height: 35px;border-radius: 100%;" :src="url" :fit="fit" />
+            <el-image style="width: 35px; height: 35px;border-radius: 100%;" src="../assets/tx.png" :fit="fit" />
             <span class="ml-2 text-[#666666]">Jumms</span>
           </div>
           <div class="cursor-pointer " @click="toggle()">
@@ -88,10 +88,10 @@
                 </div>
               </template>
               <div v-else>
-                <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0 mb-[7vh] mt-[7vh]">
+                <img src="../assets/dm.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0 mb-[7vh] mt-[7vh]">
                 <div class="flex items-center justify-around">
                   <div class="empty_item   p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px;">
-                    <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
+                    <img src="../assets/hb.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
                     <div class="mt-[2vh]">
                       <div class="empty_item_line">
                         1,An advanced online playground for Tailwind CSS,
@@ -108,7 +108,7 @@
                     </div>
                   </div>
                   <div class="empty_item   p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px;">
-                    <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
+                    <img src="../assets/shu.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
                     <div class="mt-[2vh]">
                       <div class="empty_item_line">
                         1,An advanced online playground for Tailwind CSS,
@@ -125,7 +125,7 @@
                     </div>
                   </div>
                   <div class="empty_item   p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px;">
-                    <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
+                    <img src="../assets/meting.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
                     <div class="mt-[2vh]">
                       <div class="empty_item_line">
                         1,An advanced online playground for Tailwind CSS,
