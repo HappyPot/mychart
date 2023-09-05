@@ -11,10 +11,9 @@
         </div>
         <div class="mt-[2vh]">
           <div class="max-h-[653px] overflow-auto h-[100vh] my_scroll_left">
-            <div class="flex items-center min-h-[6vh] cursor-pointer" v-for="i in 20" :key="i">
+            <div class="flex items-center min-h-[6vh] cursor-pointer" v-for="(item, index) in historyList" :key="i">
               <ChatSquare style="width: 24px; height: 32px; color:#666666;margin-right: 1vw;" />
-              <div class="max-w-[260px] truncate">Element,一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库 指南
-                了解设计指南,帮助产品设计人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体
+              <div class="max-w-[260px] truncate">{{ item.title }}
               </div>
             </div>
           </div>
@@ -44,29 +43,22 @@
         <!-- 内容 -->
         <div class=" mt-[3vh]">
           <!-- 问题列表 -->
-          <div class="my_question my_scroll_right  bg-[white] m-auto h-[100vh] p-[2vw] max-h-[700px] overflow-auto"
-            style="border-radius: 16px;">
-            <div v-for="i in 10" :key="i">
-              <div class="mb-[1.5vh]">
-                <el-tag effect="dark" round type="success">问题：</el-tag>
-                <div class="p-[0.5vw]">Tailwind CSS works by scanning all of your HTML files, JavaScript components, and
-                  any
-                  other templates
-                  for class names, generating the corresponding styles and then writing them to a static CSS file.
-                  It's fast, flexible, and reliable — with zero-runtime.</div>
-              </div>
-              <div class="my_answer p-[1vw] mb-[1.5vh]" style="border-radius: 16px;">
-                <div class="">
-                  <el-tag effect="dark" round>回答：</el-tag>
+          <div class="my_question p-[2vw]">
+            <div class="my_question  my_scroll_right  bg-[white]  h-[100vh]  max-h-[600px] overflow-auto"
+              style="border-radius: 16px;">
+              <div v-for="(item, index) in qaList" :key="index">
+                <div class="mb-[1.5vh]" v-if="item.type == 'q'">
+                  <el-tag effect="dark" round type="success">问题：</el-tag>
+                  <div class="p-[0.5vw]">{{ item.value }}</div>
                 </div>
-                <div class="p-[0.5vw]">Tailwind CSS works by scanning all of your HTML files, JavaScript components, and
-                  any
-                  other templates
-                  for class names, generating the corresponding styles and then writing them to a static CSS file.
-                  It's fast, flexible, and reliable — with zero-runtime.</div>
+                <div class="my_answer p-[1vw] mb-[1.5vh]" style="border-radius: 16px;" v-if="item.type == 'a'">
+                  <div class="">
+                    <el-tag effect="dark" round>回答：</el-tag>
+                  </div>
+                  <div class="p-[0.5vw]">{{ item.value }}</div>
+                </div>
               </div>
             </div>
-
           </div>
           <!-- 输入框 -->
           <div class="mt-[4vh] flex items-center">
@@ -74,7 +66,7 @@
               <el-input v-model="textarea" :rows="3.5" type="textarea" placeholder="Please input" />
             </div>
             <div>
-              <el-button type="primary" size="large">提问</el-button>
+              <el-button type="primary" size="large" @click="putQuestions">提问</el-button>
             </div>
           </div>
         </div>
@@ -84,7 +76,7 @@
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useToggle } from '@vueuse/shared'
 import { useDark } from "@vueuse/core";
 import { Sunny, Moon, Plus } from '@element-plus/icons-vue'
@@ -100,27 +92,48 @@ const isDark = useDark({
   valueLight: 'light',
 })
 const toggle = useToggle(isDark);
+
+// 问答详情列表
+const qaList = ref([])
+// 历史提问列表
+const historyList = ref([])
+
+onMounted(() => {
+  getHistoryList()
+})
+
+/**
+ * 获取左侧历史提问列表
+ */
+const getHistoryList = () => {
+  // 假数据
+  let obj = {
+    title: `Element,一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库 指南
+            了解设计指南,帮助产品设计人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体`
+  }
+  for (let i = 0; i < 2; i++) {
+    historyList.value.push(obj)
+  }
+}
+/**
+ * 提问
+ */
+const putQuestions = () => {
+  // 请求chatgpt接口返回数据
+  qaList.value.push({
+    type: "q",
+    value: `Tailwind CSS works by scanning all of your HTML files, JavaScript components, and
+    any
+    other templates
+    for class names, generating the corresponding styles and then writing them to a static CSS file.
+    It's fast, flexible, and reliable — with zero-runtime.`
+  })
+  setTimeout(() => {
+    qaList.value.push({
+      type: "a",
+      value: "yes"
+    })
+  }, 1000)
+}
 </script>
-<style scoped>
-.gradient_border {
-  --color-1: rebeccapurple;
-  --color-2: crimson;
-  --border-radius: 1.25rem;
-  --border-width: 0.5rem;
-  width: 100%;
-  padding: 2rem;
-  position: relative;
-  border-radius: var(--border-radius);
-}
-
-.gradient_border *+* {
-  margin-top: 0.5rem;
-}
-
-.gradient_border.-using-border-image {
-  border-width: var(--border-width);
-  border-style: solid;
-  -o-border-image: linear-gradient(135deg, var(--color-1), var(--color-2)) 1 stretch;
-  border-image: linear-gradient(135deg, var(--color-1), var(--color-2)) 1 stretch;
-}
-</style>
+<style scoped></style>
