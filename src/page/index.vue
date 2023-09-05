@@ -9,24 +9,27 @@
               <DArrowLeft />
             </el-icon>
           </div>
-          <div class=" m-auto">
-            <el-button type="primary" :icon="Plus" size="large" style="width: 200px; margin: 0 auto; display: flex;"
-              plain>New
-              Chat</el-button>
+          <div class="m-auto">
+            <el-button type="primary" :icon="Plus" size="large" style="width: 200px; margin: 0 auto; display: flex"
+              plain>New Chat</el-button>
           </div>
           <div class="mt-[2vh]">
-            <div class="max-h-[681px] overflow-auto  my_scroll_left">
+            <div class="max-h-[681px] overflow-auto my_scroll_left">
               <div class="flex items-center min-h-[6vh] cursor-pointer" :class="item.checked ? 'text-[#409eff]' : ''"
                 v-for="(item, index) in historyList" :key="index" @click="selectRecord(index)">
-                <el-icon style="width: 24px; height: 32px; color:#666666;margin-right: 0.5vw;">
-                  <ChatSquare style="width: 24px; height: 32px;" />
+                <el-icon style="
+                        width: 24px;
+                        height: 32px;
+                        color: #666666;
+                        margin-right: 0.5vw;
+                      ">
+                  <ChatSquare style="width: 24px; height: 32px" />
                 </el-icon>
-                <div class="max-w-[260px] truncate">{{ item.title }}
-                </div>
+                <div class="max-w-[260px] truncate">{{ item.title }}</div>
                 <el-popconfirm title="Are you sure to delete this?" @confirm="deleteHistory">
                   <template #reference>
                     <div class="cursor-pointer">
-                      <el-icon style="display:block">
+                      <el-icon style="display: block">
                         <CircleClose />
                       </el-icon>
                     </div>
@@ -36,16 +39,14 @@
             </div>
             <div class="absolute left-0 right-0 bottom-[4vh]">
               <el-divider />
-              <el-button style="width: 200px; margin: 0 auto; display: flex;" type="success" size="large"> Upgrade to
-                plus
-                now</el-button>
-              <div class="font-semibold text-center " style="width: 200px; margin: 0 auto;margin-top: 1vh;">
+              <el-button style="width: 200px; margin: 0 auto; display: flex" type="success" size="large">
+                Upgrade to plus now</el-button>
+              <div class="font-semibold text-center" style="width: 200px; margin: 0 auto; margin-top: 1vh">
                 $20 per month
               </div>
             </div>
           </div>
         </div>
-
       </div>
       <!-- 右边 -->
       <div class="aside_right w-[80%] p-[2.2vh] pl-[2vw] pr-[2vw] min-w-[900px] relative min-h-[869px]"
@@ -58,28 +59,28 @@
         <!-- 导航 -->
         <div class="nav flex justify-between items-center">
           <div class="flex items-center">
-            <el-image style="width: 35px; height: 35px;border-radius: 100%;" src="../assets/tx.png" :fit="fit" />
+            <el-image style="width: 35px; height: 35px; border-radius: 100%" :src="url" :fit="fit" />
             <span class="ml-2 text-[#666666]">Jumms</span>
           </div>
-          <div class="cursor-pointer " @click="toggle()">
-            <Sunny style="width: 24px; height: 32px; " v-if="!isDark" />
-            <Moon style="width: 24px; height: 32px; " class="bg-black" v-else />
+          <div class="cursor-pointer" @click="toggle()">
+            <Sunny style="width: 24px; height: 32px" v-if="!isDark" />
+            <Moon style="width: 24px; height: 32px" class="bg-black" v-else />
           </div>
         </div>
         <!-- 内容 -->
-        <div class=" mt-[4vh]">
+        <div class="mt-[4vh]">
           <!-- 问题列表 -->
-          <div class="my_question p-[2vw] pr-[1.5vw]" style="border-radius: 16px;">
+          <div class="my_question p-[2vw] pr-[1.5vw]" style="border-radius: 16px">
             <div ref="scrollContainer"
-              class="my_question pr-[0.5vw]  my_scroll_right  bg-[white]  h-[100vh]  max-h-[600px] overflow-auto"
-              style="border-radius: 16px;">
+              class="my_question pr-[0.5vw] my_scroll_right bg-[white] h-[100vh] max-h-[600px] overflow-auto"
+              style="border-radius: 16px">
               <template v-if="qaList.length > 0">
                 <div v-for="(item, index) in qaList" :key="index">
                   <div class="mb-[1.5vh]" v-if="item.type == 'q'">
                     <el-tag effect="dark" round type="success">问题：</el-tag>
                     <div class="p-[0.5vw]">{{ item.value }}</div>
                   </div>
-                  <div class="my_answer p-[1vw] mb-[1.5vh]" style="border-radius: 16px;" v-if="item.type == 'a'">
+                  <div class="my_answer p-[1vw] mb-[1.5vh]" style="border-radius: 16px" v-if="item.type == 'a'">
                     <div class="">
                       <el-tag effect="dark" round>回答：</el-tag>
                     </div>
@@ -88,10 +89,14 @@
                 </div>
               </template>
               <div v-else>
-                <img src="../assets/dm.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0 mb-[7vh] mt-[7vh]">
+                <div class="mx-auto my-0 mb-[7vh] mt-[7vh] flex justify-center items-center">
+                  <img src="../assets/dm.png" alt="" class="w-[2vw] h-[2vw]" />
+                  <h3 style="font-weight: bold" class="ml-[0.5vw]">MyChat</h3>
+                </div>
+
                 <div class="flex items-center justify-around">
-                  <div class="empty_item   p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px;">
-                    <img src="../assets/hb.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
+                  <div class="empty_item p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px">
+                    <img src="../assets/hb.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0" />
                     <div class="mt-[2vh]">
                       <div class="empty_item_line">
                         1,An advanced online playground for Tailwind CSS,
@@ -107,8 +112,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="empty_item   p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px;">
-                    <img src="../assets/shu.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
+                  <div class="empty_item p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px">
+                    <img src="../assets/shu.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0" />
                     <div class="mt-[2vh]">
                       <div class="empty_item_line">
                         1,An advanced online playground for Tailwind CSS,
@@ -124,8 +129,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="empty_item   p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px;">
-                    <img src="../assets/meting.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
+                  <div class="empty_item p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px">
+                    <img src="../assets/meting.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0" />
                     <div class="mt-[2vh]">
                       <div class="empty_item_line">
                         1,An advanced online playground for Tailwind CSS,
@@ -142,15 +147,13 @@
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
-
           </div>
           <!-- 输入框 -->
-          <div class="mt-[5vh] flex items-center">
+          <div class="mt-[3vh] flex items-center">
             <div class="w-[100%] mr-[2vw]">
-              <el-input v-model="questionValue" :rows="3.5" type="textarea" placeholder="Please input" />
+              <el-input v-model="questionValue" :rows="4" type="textarea" placeholder="Please input" />
             </div>
             <div>
               <el-button type="primary" size="large" @click="putQuestions">提问</el-button>
@@ -171,90 +174,85 @@
         </el-form>
       </div>
       <div class="text-center">
-        <el-button type="primary" @click="register">
-          注册
-        </el-button>
-        <el-button type="primary" @click="login">
-          登录
-        </el-button>
+        <el-button type="primary" @click="register"> 注册 </el-button>
+        <el-button type="primary" @click="login"> 登录 </el-button>
       </div>
-
     </el-dialog>
   </div>
 </template>
 <script setup>
 import { onMounted, ref, reactive, nextTick, toRaw } from "vue";
-import { useToggle } from '@vueuse/shared'
+import { useToggle } from "@vueuse/shared";
 import { useDark } from "@vueuse/core";
-import { Sunny, Moon, Plus } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
-const url =
-  'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+import { Sunny, Moon, Plus } from "@element-plus/icons-vue";
+import { ElMessage } from "element-plus";
+import tx from "../assets/tx.png";
+const url = ref(tx);
 const isDark = useDark({
   // 存储到localStorage/sessionStorage中的Key 根据自己的需求更改
-  storageKey: 'useDarkKEY',
+  storageKey: "useDarkKEY",
   // 暗黑class名字
-  valueDark: 'dark',
+  valueDark: "dark",
   // 高亮class名字
-  valueLight: 'light',
-})
+  valueLight: "light",
+});
 const toggle = useToggle(isDark);
 // 登录需要传的参数
 const form = reactive({
-  name: '',
-  password: ""
-})
+  name: "",
+  password: "",
+});
 // 表单校验规则
 const rules = reactive({
-  name: [
-    { required: true, message: 'Please input name', trigger: 'blur' },
-  ],
+  name: [{ required: true, message: "Please input name", trigger: "blur" }],
   password: [
     {
       required: true,
-      message: 'Please input password',
-      trigger: 'blur',
+      message: "Please input password",
+      trigger: "blur",
     },
   ],
-})
+});
 // 登录弹框控制
-const centerDialogVisible = ref(false)
+const centerDialogVisible = ref(false);
 // 问答详情列表
-const qaList = ref([])
+const qaList = ref([]);
 // 历史提问列表
-const historyList = ref([])
+const historyList = ref([]);
 // 文本域问题
-const questionValue = ref(`Tailwind CSS works by scanning all of your HTML files, JavaScript components, and.`)
+const questionValue = ref(
+  `Tailwind CSS works by scanning all of your HTML files, JavaScript components, and.`
+);
 
 //接入登陆接口时需要更新该变量，目前只是测试使用
-const token = ref("")
+const token = ref("");
 
 // 1，进入页面加载
 onMounted(() => {
-  getHistoryList()
-})
+  getHistoryList();
+});
 
-const dArrowLeft = ref(null)
-const dArrowRight = ref(null)
+const dArrowLeft = ref(null);
+const dArrowRight = ref(null);
 /**
  * 收起
  */
 const packUp = () => {
   dArrowLeft.value = {
-    "width": 0,
+    width: 0,
     "min-width": 0,
-  }
+  };
   dArrowRight.value = {
-    "width": "100%"
-  }
-}
+    width: "100%",
+  };
+};
 /**
  * 打开
  */
 const open = () => {
-  dArrowLeft.value = null
-  dArrowRight.value = null
-}
+  dArrowLeft.value = null;
+  dArrowRight.value = null;
+};
 /**
  * 获取左侧历史提问列表
  */
@@ -264,82 +262,82 @@ const getHistoryList = () => {
     let obj = {
       checked: false,
       title: `Element,一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库 指南
-            了解设计指南,帮助产品设计人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体`
-    }
-    historyList.value.push(obj)
+            了解设计指南,帮助产品设计人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体`,
+    };
+    historyList.value.push(obj);
   }
   // 假数据以上
-}
+};
 /**
  * 提问
  */
 const putQuestions = () => {
   // 如果token没有值，说明没有登录，需要提示用户登录
   if (!token.value) {
-    centerDialogVisible.value = true
-    return
+    centerDialogVisible.value = true;
+    return;
   } else {
     // 请求chatgpt接口返回数据（编写接口位置）
     qaList.value.push({
       type: "q",
-      value: questionValue.value
-    })
+      value: questionValue.value,
+    });
     nextTick(() => {
       scrollToBottom();
     });
     setTimeout(() => {
       qaList.value.push({
         type: "a",
-        value: "人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体"
-      })
+        value:
+          "人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体",
+      });
       nextTick(() => {
         scrollToBottom();
       });
-    }, 1000)
+    }, 1000);
   }
-}
+};
 /**
  * 登录方法
  */
 const login = () => {
   // 调用登录接口,以下为模拟登录
-  token.value = form.name
-  centerDialogVisible.value = false
+  token.value = form.name;
+  centerDialogVisible.value = false;
   ElMessage({
-    message: '登录成功',
-    type: 'success',
-  })
-}
+    message: "登录成功",
+    type: "success",
+  });
+};
 /**
  * 注册方法
  */
 const register = () => {
   // 调用注册接口
-}
+};
 /**
  * 删除历史消息
  */
 const deleteHistory = () => {
   //调用删除接口，删除成功后再调用回去历史记录列表
-  getHistoryList()
-
-}
+  getHistoryList();
+};
 /**
  * 控制滚动条
  */
-const scrollContainer = ref(null)
+const scrollContainer = ref(null);
 const scrollToBottom = () => {
   const container = scrollContainer.value;
   container.scrollTop = container.scrollHeight;
-}
+};
 /**
  * 选择记录
  */
 const selectRecord = (index) => {
-  historyList.value.map(item => item['checked'] = false)
-  historyList.value[index]["checked"] = true
-  console.log(toRaw(historyList.value))
-}
+  historyList.value.map((item) => (item["checked"] = false));
+  historyList.value[index]["checked"] = true;
+  console.log(toRaw(historyList.value));
+};
 </script>
 <style scoped>
 .dArrowLeft {
