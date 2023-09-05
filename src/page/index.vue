@@ -1,11 +1,9 @@
 <template>
   <div class="wrap">
-    <div class="flex align-middle">
-      <!-- class="aside_left min-w-[342px] w-[20%] pb-[2vh] pt-[2vh]  h-[100vh] pl-[1.5vw] pr-[1.5vw] relative overflow-hidden" -->
+    <div class="flex align-middle h-[100vh] min-h-[869px]">
       <!-- 左边 -->
-      <div class="aside_left min-w-[342px] w-[20%] pb-[2vh] pt-[2vh]  h-[100vh]  relative overflow-hidden"
-        :style="dArrowLeft">
-        <div class="max-w-[342px] min-w-[142px] mx-auto my-0">
+      <div class="aside_left min-w-[384px] w-[20%] pb-[2vh] pt-[2vh] relative overflow-hidden" :style="dArrowLeft">
+        <div class="max-w-[323px] min-w-[142px] mx-auto my-0">
           <div class="dArrowLeft cursor-pointer" @click="packUp" v-if="!dArrowLeft">
             <el-icon>
               <DArrowLeft />
@@ -17,11 +15,12 @@
               Chat</el-button>
           </div>
           <div class="mt-[2vh]">
-            <div class="max-h-[653px] overflow-auto h-[100vh] my_scroll_left">
+            <div class="max-h-[681px] overflow-auto  my_scroll_left">
               <div class="flex items-center min-h-[6vh] cursor-pointer" :class="item.checked ? 'text-[#409eff]' : ''"
                 v-for="(item, index) in historyList" :key="index" @click="selectRecord(index)">
-
-                <ChatSquare style="width: 24px; height: 32px; color:#666666;margin-right: 1vw;" />
+                <el-icon style="width: 24px; height: 32px; color:#666666;margin-right: 0.5vw;">
+                  <ChatSquare style="width: 24px; height: 32px;" />
+                </el-icon>
                 <div class="max-w-[260px] truncate">{{ item.title }}
                 </div>
                 <el-popconfirm title="Are you sure to delete this?" @confirm="deleteHistory">
@@ -35,20 +34,22 @@
                 </el-popconfirm>
               </div>
             </div>
-            <el-divider />
-            <el-button style="width: 200px; margin: 0 auto; display: flex;" type="success" size="large"> Upgrade to
-              plus
-              now</el-button>
-            <div class="font-semibold text-center " style="width: 200px; margin: 0 auto;margin-top: 1vh;">
-              $20 per month
+            <div class="absolute left-0 right-0 bottom-[4vh]">
+              <el-divider />
+              <el-button style="width: 200px; margin: 0 auto; display: flex;" type="success" size="large"> Upgrade to
+                plus
+                now</el-button>
+              <div class="font-semibold text-center " style="width: 200px; margin: 0 auto;margin-top: 1vh;">
+                $20 per month
+              </div>
             </div>
-            <el-divider />
           </div>
         </div>
 
       </div>
       <!-- 右边 -->
-      <div class="aside_right w-[80%] p-[2.2vh] pl-[2vw] pr-[2vw] min-w-[900px] relative" :style="dArrowRight">
+      <div class="aside_right w-[80%] p-[2.2vh] pl-[2vw] pr-[2vw] min-w-[900px] relative min-h-[869px]"
+        :style="dArrowRight">
         <div class="dArrowRight cursor-pointer" @click="open" v-if="dArrowLeft">
           <el-icon>
             <DArrowRight />
@@ -66,7 +67,7 @@
           </div>
         </div>
         <!-- 内容 -->
-        <div class=" mt-[3vh]">
+        <div class=" mt-[4vh]">
           <!-- 问题列表 -->
           <div class="my_question p-[2vw] pr-[1.5vw]" style="border-radius: 16px;">
             <div ref="scrollContainer"
@@ -87,7 +88,7 @@
                 </div>
               </template>
               <div v-else>
-                <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0 mb-[10vh] mt-[7vh]">
+                <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0 mb-[7vh] mt-[7vh]">
                 <div class="flex items-center justify-around">
                   <div class="empty_item   p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px;">
                     <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
@@ -147,7 +148,7 @@
 
           </div>
           <!-- 输入框 -->
-          <div class="mt-[4vh] flex items-center">
+          <div class="mt-[5vh] flex items-center">
             <div class="w-[100%] mr-[2vw]">
               <el-input v-model="questionValue" :rows="3.5" type="textarea" placeholder="Please input" />
             </div>
@@ -259,7 +260,7 @@ const open = () => {
  */
 const getHistoryList = () => {
   // 假数据以下（编写接口位置）
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 20; i++) {
     let obj = {
       checked: false,
       title: `Element,一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库 指南
@@ -283,10 +284,13 @@ const putQuestions = () => {
       type: "q",
       value: questionValue.value
     })
+    nextTick(() => {
+      scrollToBottom();
+    });
     setTimeout(() => {
       qaList.value.push({
         type: "a",
-        value: "yes"
+        value: "人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体"
       })
       nextTick(() => {
         scrollToBottom();
