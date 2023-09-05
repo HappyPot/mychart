@@ -86,58 +86,62 @@
                   </div>
                 </div>
               </template>
-              <div v-else class="flex items-center justify-around">
-                <div class="empty_item   p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px;">
-                  <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
-                  <div class="mt-[2vh]">
-                    <div class="empty_item_line">
-                      1,An advanced online playground for Tailwind CSS,
+              <div v-else>
+                <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0 mb-[10vh] mt-[7vh]">
+                <div class="flex items-center justify-around">
+                  <div class="empty_item   p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px;">
+                    <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
+                    <div class="mt-[2vh]">
+                      <div class="empty_item_line">
+                        1,An advanced online playground for Tailwind CSS,
+                      </div>
+                      <div class="empty_item_line">
+                        2,Customizing your tailwind.config.js file
+                      </div>
+                      <div class="empty_item_line">
+                        3,Extracting classes with @apply
+                      </div>
+                      <div class="empty_item_line">
+                        4,Code completion with instant preview
+                      </div>
                     </div>
-                    <div class="empty_item_line">
-                      2,Customizing your tailwind.config.js file
+                  </div>
+                  <div class="empty_item   p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px;">
+                    <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
+                    <div class="mt-[2vh]">
+                      <div class="empty_item_line">
+                        1,An advanced online playground for Tailwind CSS,
+                      </div>
+                      <div class="empty_item_line">
+                        2,Customizing your tailwind.config.js file
+                      </div>
+                      <div class="empty_item_line">
+                        3,Extracting classes with @apply
+                      </div>
+                      <div class="empty_item_line">
+                        4,Code completion with instant preview
+                      </div>
                     </div>
-                    <div class="empty_item_line">
-                      3,Extracting classes with @apply
-                    </div>
-                    <div class="empty_item_line">
-                      4,Code completion with instant preview
+                  </div>
+                  <div class="empty_item   p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px;">
+                    <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
+                    <div class="mt-[2vh]">
+                      <div class="empty_item_line">
+                        1,An advanced online playground for Tailwind CSS,
+                      </div>
+                      <div class="empty_item_line">
+                        2,Customizing your tailwind.config.js file
+                      </div>
+                      <div class="empty_item_line">
+                        3,Extracting classes with @apply
+                      </div>
+                      <div class="empty_item_line">
+                        4,Code completion with instant preview
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="empty_item   p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px;">
-                  <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
-                  <div class="mt-[2vh]">
-                    <div class="empty_item_line">
-                      1,An advanced online playground for Tailwind CSS,
-                    </div>
-                    <div class="empty_item_line">
-                      2,Customizing your tailwind.config.js file
-                    </div>
-                    <div class="empty_item_line">
-                      3,Extracting classes with @apply
-                    </div>
-                    <div class="empty_item_line">
-                      4,Code completion with instant preview
-                    </div>
-                  </div>
-                </div>
-                <div class="empty_item   p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px;">
-                  <img :src="url" alt="" class="w-[2vw] h-[2vw] mx-auto my-0">
-                  <div class="mt-[2vh]">
-                    <div class="empty_item_line">
-                      1,An advanced online playground for Tailwind CSS,
-                    </div>
-                    <div class="empty_item_line">
-                      2,Customizing your tailwind.config.js file
-                    </div>
-                    <div class="empty_item_line">
-                      3,Extracting classes with @apply
-                    </div>
-                    <div class="empty_item_line">
-                      4,Code completion with instant preview
-                    </div>
-                  </div>
-                </div>
+
               </div>
             </div>
 
