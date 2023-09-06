@@ -1,5 +1,9 @@
 @import "var.scss";
 
+html {
+    font-size: calc(14px + (20 - 14) * ((100vw - 320px) / (2000 - 320)));
+}
+
 .light {
     .aside_left {
         background: $lightbg;
