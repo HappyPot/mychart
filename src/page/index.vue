@@ -69,7 +69,7 @@
           </div>
         </div>
         <!-- 内容 -->
-        <div class="mt-[4vh]">
+        <div class="mt-[4vh] flex flex-col">
           <!-- 问题列表 -->
           <div class="my_question p-[2vw] pr-[1.5vw]" style="border-radius: 16px">
             <div ref="scrollContainer"
