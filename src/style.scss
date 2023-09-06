@@ -1,8 +1,8 @@
 @import "var.scss";
 
-// html {
-//     font-size: calc(14px + (20 - 14) * ((100vw - 320px) / (2000 - 320)));
-// }
+html {
+    font-size: calc(14px + (20 - 14) * ((100vw - 320px) / (1920 - 320)));
+}
 
 .light {
     .aside_left {
