@@ -1,7 +1,16 @@
 @import "var.scss";
 
-html {
-    font-size: calc(14px + (20 - 14) * ((100vw - 320px) / (1920 - 320)));
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body,
+#app {
+    // font-size: calc(14px + (20 - 14) * ((100vw - 320px) / (1920 - 320)));
+    height: 100%;
+    width: 100%;
 }
 
 .light {

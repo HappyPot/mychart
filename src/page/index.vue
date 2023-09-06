@@ -1,56 +1,56 @@
 <template>
-  <div class="wrap">
-    <div class="flex  h-[100vh] min-h-[869px]">
+  <div class="h-[100%]">
+    <div class="flex h-[100%] w-[100%]">
       <!-- 左边 -->
-      <div class="aside_left min-w-[384px] w-[20%] pb-[2vh] pt-[2vh] relative overflow-hidden" :style="dArrowLeft">
-        <div class="max-w-[323px] min-w-[142px] mx-auto my-0">
-          <div class="dArrowLeft cursor-pointer" @click="packUp" v-if="!dArrowLeft">
-            <el-icon>
-              <DArrowLeft />
-            </el-icon>
-          </div>
-          <div class="m-auto">
-            <el-button type="primary" :icon="Plus" size="large" style="width: 200px; margin: 0 auto; display: flex"
-              plain>New Chat</el-button>
-          </div>
-          <div class="mt-[2vh]">
-            <div class="max-h-[681px] overflow-auto my_scroll_left">
-              <div class="flex items-center min-h-[6vh] cursor-pointer" :class="item.checked ? 'text-[#409eff]' : ''"
-                v-for="(item, index) in historyList" :key="index" @click="selectRecord(index)">
-                <el-icon style="
-                          width: 24px;
-                          height: 32px;
-                          color: #666666;
-                          margin-right: 0.5vw;
-                        ">
-                  <ChatSquare style="width: 24px; height: 32px" />
-                </el-icon>
-                <div class="max-w-[260px] truncate">{{ item.title }}</div>
-                <el-popconfirm title="Are you sure to delete this?" @confirm="deleteHistory">
-                  <template #reference>
-                    <div class="cursor-pointer">
-                      <el-icon style="display: block">
-                        <CircleClose />
-                      </el-icon>
-                    </div>
-                  </template>
-                </el-popconfirm>
-              </div>
+      <div class="aside_left min-w-[384px] h-[100%] pb-[2vh] pt-[2vh] relative flex flex-col  overflow-hidden"
+        :style="dArrowLeft">
+        <div class="dArrowLeft cursor-pointer" @click="packUp" v-if="!dArrowLeft">
+          <el-icon>
+            <DArrowLeft />
+          </el-icon>
+        </div>
+        <div class="">
+          <el-button type="primary" :icon="Plus" size="large" style="width: 200px; margin: 0 auto; display: flex"
+            plain>New Chat</el-button>
+        </div>
+        <div class="mt-[2vh] h-[100%]">
+          <div class="max-h-[681px] overflow-auto my_scroll_left">
+            <div class="flex items-center mx-[10px] my-[0px] px-[12px] py-[10px] cursor-pointer"
+              :class="item.checked ? 'text-[#409eff]' : ''" v-for="(item, index) in historyList" :key="index"
+              @click="selectRecord(index)">
+              <el-icon style="
+                                                                        width: 24px;
+                                                                        height: 32px;
+                                                                        color: #666666;
+                                                                        margin-right: 0.5vw;
+                                                                      ">
+                <ChatSquare style="width: 24px; height: 32px" />
+              </el-icon>
+              <div class="max-w-[260px] truncate">{{ item.title }}</div>
+              <el-popconfirm title="Are you sure to delete this?" @confirm="deleteHistory">
+                <template #reference>
+                  <div class="cursor-pointer">
+                    <el-icon style="display: block">
+                      <CircleClose />
+                    </el-icon>
+                  </div>
+                </template>
+              </el-popconfirm>
             </div>
-            <div class="absolute left-0 right-0 bottom-[4vh]">
-              <el-divider />
-              <el-button style="width: 200px; margin: 0 auto; display: flex" type="success" size="large">
-                Upgrade to plus now</el-button>
-              <div class="font-semibold text-center" style="width: 200px; margin: 0 auto; margin-top: 1vh">
-                $20 per month
-              </div>
-            </div>
+          </div>
+
+        </div>
+        <div class="">
+          <el-divider />
+          <el-button style="width: 200px; margin: 0 auto; display: flex" type="success" size="large">
+            Upgrade to plus now</el-button>
+          <div class="font-semibold text-center" style="width: 200px; margin: 0 auto; margin-top: 1vh">
+            $20 per month
           </div>
         </div>
       </div>
       <!-- 右边 -->
-      <div class="aside_right w-[80%] p-[2.2vh] pl-[2vw] pr-[2vw] min-w-[900px] relative min-h-[869px]"
-        :style="dArrowRight">
+      <div class="aside_right flex-1 min-w-[1135px] p-[2.2vh] pl-[2vw] pr-[2vw]  relative " :style="dArrowRight">
         <div class="dArrowRight cursor-pointer" @click="open" v-if="dArrowLeft">
           <el-icon>
             <DArrowRight />
@@ -345,6 +345,7 @@ const selectRecord = (index) => {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+  flex-direction: ;
 }
 
 .dArrowRight {
