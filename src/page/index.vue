@@ -18,11 +18,11 @@
               <div class="flex items-center min-h-[6vh] cursor-pointer" :class="item.checked ? 'text-[#409eff]' : ''"
                 v-for="(item, index) in historyList" :key="index" @click="selectRecord(index)">
                 <el-icon style="
-                                              width: 24px;
-                                              height: 32px;
-                                              color: #666666;
-                                              margin-right: 0.5vw;
-                                            ">
+                                                width: 24px;
+                                                height: 32px;
+                                                color: #666666;
+                                                margin-right: 0.5vw;
+                                              ">
                   <ChatSquare style="width: 24px; height: 32px" />
                 </el-icon>
                 <div class="max-w-[80%] truncate">{{ item.title }}</div>
