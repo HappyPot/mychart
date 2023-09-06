@@ -23,6 +23,10 @@ body,
 
     }
 
+    .my_textarea {
+        background: $lightbg;
+    }
+
     .my_question {
         background: $lightbg;
     }
@@ -89,6 +93,10 @@ body,
 
     .aside_right {
         background: $darkbg;
+    }
+
+    .my_textarea {
+        background: $darkbg-gray;
     }
 
     .my_question {

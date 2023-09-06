@@ -2,7 +2,7 @@
   <div class="h-[100%]">
     <div class="flex h-[100%] w-[100%]">
       <!-- 左边 -->
-      <div class="aside_left min-w-[384px] h-[100%] pb-[2vh] pt-[2vh] relative flex flex-col  overflow-hidden"
+      <div class="aside_left min-w-[384px] h-[100%] pb-[2vh] pt-[2vh] relative flex flex-col overflow-hidden"
         :style="dArrowLeft">
         <div class="dArrowLeft cursor-pointer" @click="packUp" v-if="!dArrowLeft">
           <el-icon>
@@ -19,11 +19,11 @@
               :class="item.checked ? 'text-[#409eff]' : ''" v-for="(item, index) in historyList" :key="index"
               @click="selectRecord(index)">
               <el-icon style="
-                                                                                                  width: 24px;
-                                                                                                  height: 32px;
-                                                                                                  color: #666666;
-                                                                                                  margin-right: 0.5vw;
-                                                                                                ">
+                      width: 24px;
+                      height: 32px;
+                      color: #666666;
+                      margin-right: 0.5vw;
+                    ">
                 <ChatSquare style="width: 24px; height: 32px" />
               </el-icon>
               <div class="max-w-[260px] truncate">{{ item.title }}</div>
@@ -38,7 +38,6 @@
               </el-popconfirm>
             </div>
           </div>
-
         </div>
         <div class="">
           <el-divider />
@@ -50,7 +49,7 @@
         </div>
       </div>
       <!-- 右边 -->
-      <div class="aside_right flex-col flex flex-1 min-w-[1135px] p-[2.2vh] pl-[2vw] pr-[2vw]  relative "
+      <div class="aside_right flex-col flex flex-1 min-w-[1135px] p-[2.2vh] pl-[2vw] pr-[2vw] relative"
         :style="dArrowRight">
         <div class="dArrowRight cursor-pointer" @click="open" v-if="dArrowLeft">
           <el-icon>
@@ -73,7 +72,7 @@
           <!-- 问题列表 -->
           <div class="my_question p-[2vw] pr-[1.5vw] h-[100%] flex" style="border-radius: 16px">
             <div ref="scrollContainer"
-              class="flex-1 my_question pr-[0.5vw] my_scroll_right bg-[white] h-[100%]  overflow-auto"
+              class="flex-1 my_question relative pr-[0.5vw] my_scroll_right bg-[white] h-[100%] overflow-auto"
               style="border-radius: 16px">
               <template v-if="qaList.length > 0">
                 <div v-for="(item, index) in qaList" :key="index">
@@ -89,14 +88,13 @@
                   </div>
                 </div>
               </template>
-              <div v-else>
-                <div class="mx-auto my-0 mb-[7vh] mt-[7vh] flex justify-center items-center">
+              <div v-else class="absolute top-[50%] w-[100%] translate-y-[-50%]">
+                <div class="mx-auto my-0 mb-[6vh] mt-[7vh] flex justify-center items-center">
                   <img src="../assets/dm.png" alt="" class="w-[2vw] h-[2vw]" />
                   <h3 style="font-weight: bold" class="ml-[0.5vw]">MyChat</h3>
                 </div>
-
                 <div class="flex items-center justify-around">
-                  <div class="empty_item p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px">
+                  <div class="empty_item p-[1.5vw] w-[25%] h-[400px]" style="border-radius: 16px">
                     <img src="../assets/hb.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0" />
                     <div class="mt-[2vh]">
                       <div class="empty_item_line">
@@ -113,7 +111,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="empty_item p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px">
+                  <div class="empty_item p-[1.5vw] h-[42vh] w-[25%] h-[400px]" style="border-radius: 16px">
                     <img src="../assets/shu.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0" />
                     <div class="mt-[2vh]">
                       <div class="empty_item_line">
@@ -130,7 +128,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="empty_item p-[1.5vw] h-[42vh] w-[25%]" style="border-radius: 16px">
+                  <div class="empty_item p-[1.5vw] h-[42vh] w-[25%] h-[400px]" style="border-radius: 16px">
                     <img src="../assets/meting.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0" />
                     <div class="mt-[2vh]">
                       <div class="empty_item_line">
@@ -151,15 +149,19 @@
               </div>
             </div>
           </div>
-
         </div>
         <!-- 输入框 -->
-        <div class="mt-[3vh] flex items-center">
-          <div class="w-[100%] mr-[2vw]">
-            <el-input v-model="questionValue" :rows="4" type="textarea" placeholder="Please input" />
+        <div class="mt-[3vh] flex items-end flex-col rounded-[16px] my_textarea p-[1vw]">
+          <div class="w-[100%]">
+            <el-input :autosize="{ minRows: 2, maxRows: 4 }" v-model="questionValue" :rows="3" type="textarea"
+              placeholder="你想聊点什么" />
           </div>
-          <div>
-            <el-button type="primary" size="large" @click="putQuestions">提问</el-button>
+          <div class="mt-2 flex justify-between">
+            <!-- <div>
+                <el-button type="primary" :icon="Search">Search</el-button>
+                <el-button type="primary" :icon="Search">Search</el-button>
+              </div> -->
+            <el-button type="primary" plain @click="putQuestions">提问</el-button>
           </div>
         </div>
       </div>
@@ -222,9 +224,7 @@ const qaList = ref([]);
 // 历史提问列表
 const historyList = ref([]);
 // 文本域问题
-const questionValue = ref(
-  `Tailwind CSS works by scanning all of your HTML files, JavaScript components, and.`
-);
+const questionValue = ref("");
 
 //接入登陆接口时需要更新该变量，目前只是测试使用
 const token = ref("");
@@ -264,7 +264,7 @@ const getHistoryList = () => {
     let obj = {
       checked: false,
       title: `Element,一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库 指南
-            了解设计指南,帮助产品设计人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体`,
+              了解设计指南,帮助产品设计人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体`,
     };
     historyList.value.push(obj);
   }
@@ -344,16 +344,15 @@ const selectRecord = (index) => {
  * 新建对话
  */
 const newChat = () => {
-  qaList.value = []
-}
+  qaList.value = [];
+};
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .dArrowLeft {
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  flex-direction: ;
 }
 
 .dArrowRight {
@@ -373,5 +372,12 @@ const newChat = () => {
   border-radius: 16px;
 
   margin: 0.5vw 0;
+}
+
+.my_textarea {
+  ::v-deep .el-textarea__inner {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+    resize: none;
+  }
 }
 </style>
