@@ -2,8 +2,8 @@
   <div class="wrap">
     <div class="flex align-middle h-[100vh] min-h-[869px]">
       <!-- 左边 -->
-      <div class="aside_left min-w-[384px] w-[20%] pb-[2vh] pt-[2vh] relative overflow-hidden" :style="dArrowLeft">
-        <div class="max-w-[323px] min-w-[142px] mx-auto my-0">
+      <div class="aside_left min-w-[384px] w-[20%]  pt-[2vh] relative overflow-hidden" :style="dArrowLeft">
+        <div class="max-w-[85%] min-w-[142px] mx-auto my-0">
           <div class="dArrowLeft cursor-pointer" @click="packUp" v-if="!dArrowLeft">
             <el-icon>
               <DArrowLeft />
@@ -14,18 +14,18 @@
               plain>New Chat</el-button>
           </div>
           <div class="mt-[2vh]">
-            <div class="max-h-[681px] overflow-auto my_scroll_left">
+            <div class="overflow-auto my_scroll_left" style="height:calc(100vh - 244px)">
               <div class="flex items-center min-h-[6vh] cursor-pointer" :class="item.checked ? 'text-[#409eff]' : ''"
                 v-for="(item, index) in historyList" :key="index" @click="selectRecord(index)">
                 <el-icon style="
-                        width: 24px;
-                        height: 32px;
-                        color: #666666;
-                        margin-right: 0.5vw;
-                      ">
+                                              width: 24px;
+                                              height: 32px;
+                                              color: #666666;
+                                              margin-right: 0.5vw;
+                                            ">
                   <ChatSquare style="width: 24px; height: 32px" />
                 </el-icon>
-                <div class="max-w-[260px] truncate">{{ item.title }}</div>
+                <div class="max-w-[80%] truncate">{{ item.title }}</div>
                 <el-popconfirm title="Are you sure to delete this?" @confirm="deleteHistory">
                   <template #reference>
                     <div class="cursor-pointer">
@@ -37,13 +37,14 @@
                 </el-popconfirm>
               </div>
             </div>
-            <div class="absolute left-0 right-0 bottom-[4vh]">
-              <el-divider />
-              <el-button style="width: 200px; margin: 0 auto; display: flex" type="success" size="large">
-                Upgrade to plus now</el-button>
-              <div class="font-semibold text-center" style="width: 200px; margin: 0 auto; margin-top: 1vh">
-                $20 per month
-              </div>
+
+          </div>
+          <div>
+            <el-divider />
+            <el-button style="width: 200px; margin: 0 auto; display: flex" type="success" size="large">
+              Upgrade to plus now</el-button>
+            <div class="font-semibold text-center" style="width: 200px; margin: 0 auto; margin-top: 1vh">
+              $20 per month
             </div>
           </div>
         </div>
@@ -72,7 +73,7 @@
           <!-- 问题列表 -->
           <div class="my_question p-[2vw] pr-[1.5vw]" style="border-radius: 16px">
             <div ref="scrollContainer"
-              class="my_question pr-[0.5vw] my_scroll_right bg-[white] h-[100vh] max-h-[600px] overflow-auto"
+              class="my_question pr-[0.5vw] my_scroll_right bg-[white] h-[100vh] max-h-[66vh] overflow-auto"
               style="border-radius: 16px">
               <template v-if="qaList.length > 0">
                 <div v-for="(item, index) in qaList" :key="index">
