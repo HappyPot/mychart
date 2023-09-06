@@ -10,8 +10,8 @@
           </el-icon>
         </div>
         <div class="">
-          <el-button type="primary" :icon="Plus" size="large" style="width: 200px; margin: 0 auto; display: flex"
-            plain>New Chat</el-button>
+          <el-button type="primary" :icon="Plus" size="large" style="width: 200px; margin: 0 auto; display: flex" plain
+            @click="newChat">New Chat</el-button>
         </div>
         <div class="mt-[2vh] h-[100%] flex-1 overflow-hidden">
           <div class="h-[100%] overflow-auto my_scroll_left">
@@ -19,11 +19,11 @@
               :class="item.checked ? 'text-[#409eff]' : ''" v-for="(item, index) in historyList" :key="index"
               @click="selectRecord(index)">
               <el-icon style="
-                                                                                width: 24px;
-                                                                                height: 32px;
-                                                                                color: #666666;
-                                                                                margin-right: 0.5vw;
-                                                                              ">
+                                                                                                  width: 24px;
+                                                                                                  height: 32px;
+                                                                                                  color: #666666;
+                                                                                                  margin-right: 0.5vw;
+                                                                                                ">
                 <ChatSquare style="width: 24px; height: 32px" />
               </el-icon>
               <div class="max-w-[260px] truncate">{{ item.title }}</div>
@@ -50,7 +50,8 @@
         </div>
       </div>
       <!-- 右边 -->
-      <div class="aside_right flex-col flex flex-1 min-w-[1135px] p-[2.2vh] pl-[2vw] pr-[2vw]  relative " :style="dArrowRight">
+      <div class="aside_right flex-col flex flex-1 min-w-[1135px] p-[2.2vh] pl-[2vw] pr-[2vw]  relative "
+        :style="dArrowRight">
         <div class="dArrowRight cursor-pointer" @click="open" v-if="dArrowLeft">
           <el-icon>
             <DArrowRight />
@@ -68,11 +69,11 @@
           </div>
         </div>
         <!-- 内容 -->
-        <div class="mt-[4vh]">
+        <div class="mt-[4vh] flex-1 h-[100%] overflow-hidden">
           <!-- 问题列表 -->
-          <div class="my_question p-[2vw] pr-[1.5vw]" style="border-radius: 16px">
+          <div class="my_question p-[2vw] pr-[1.5vw] h-[100%] flex" style="border-radius: 16px">
             <div ref="scrollContainer"
-              class="my_question pr-[0.5vw] my_scroll_right bg-[white] h-[100vh] max-h-[600px] overflow-auto"
+              class="flex-1 my_question pr-[0.5vw] my_scroll_right bg-[white] h-[100%]  overflow-auto"
               style="border-radius: 16px">
               <template v-if="qaList.length > 0">
                 <div v-for="(item, index) in qaList" :key="index">
@@ -150,14 +151,15 @@
               </div>
             </div>
           </div>
-          <!-- 输入框 -->
-          <div class="mt-[3vh] flex items-center">
-            <div class="w-[100%] mr-[2vw]">
-              <el-input v-model="questionValue" :rows="4" type="textarea" placeholder="Please input" />
-            </div>
-            <div>
-              <el-button type="primary" size="large" @click="putQuestions">提问</el-button>
-            </div>
+
+        </div>
+        <!-- 输入框 -->
+        <div class="mt-[3vh] flex items-center">
+          <div class="w-[100%] mr-[2vw]">
+            <el-input v-model="questionValue" :rows="4" type="textarea" placeholder="Please input" />
+          </div>
+          <div>
+            <el-button type="primary" size="large" @click="putQuestions">提问</el-button>
           </div>
         </div>
       </div>
@@ -338,6 +340,12 @@ const selectRecord = (index) => {
   historyList.value[index]["checked"] = true;
   console.log(toRaw(historyList.value));
 };
+/**
+ * 新建对话
+ */
+const newChat = () => {
+  qaList.value = []
+}
 </script>
 <style scoped>
 .dArrowLeft {
