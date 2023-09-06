@@ -13,17 +13,17 @@
           <el-button type="primary" :icon="Plus" size="large" style="width: 200px; margin: 0 auto; display: flex"
             plain>New Chat</el-button>
         </div>
-        <div class="mt-[2vh] h-[100%]">
-          <div class="max-h-[681px] overflow-auto my_scroll_left">
+        <div class="mt-[2vh] h-[100%] flex-1 overflow-hidden">
+          <div class="h-[100%] overflow-auto my_scroll_left">
             <div class="flex items-center mx-[10px] my-[0px] px-[12px] py-[10px] cursor-pointer"
               :class="item.checked ? 'text-[#409eff]' : ''" v-for="(item, index) in historyList" :key="index"
               @click="selectRecord(index)">
               <el-icon style="
-                                                                        width: 24px;
-                                                                        height: 32px;
-                                                                        color: #666666;
-                                                                        margin-right: 0.5vw;
-                                                                      ">
+                                                                                width: 24px;
+                                                                                height: 32px;
+                                                                                color: #666666;
+                                                                                margin-right: 0.5vw;
+                                                                              ">
                 <ChatSquare style="width: 24px; height: 32px" />
               </el-icon>
               <div class="max-w-[260px] truncate">{{ item.title }}</div>
@@ -50,7 +50,7 @@
         </div>
       </div>
       <!-- 右边 -->
-      <div class="aside_right flex-1 min-w-[1135px] p-[2.2vh] pl-[2vw] pr-[2vw]  relative " :style="dArrowRight">
+      <div class="aside_right flex-col flex flex-1 min-w-[1135px] p-[2.2vh] pl-[2vw] pr-[2vw]  relative " :style="dArrowRight">
         <div class="dArrowRight cursor-pointer" @click="open" v-if="dArrowLeft">
           <el-icon>
             <DArrowRight />
