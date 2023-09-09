@@ -19,11 +19,11 @@
               :class="item.checked ? 'text-[#409eff]' : ''" v-for="(item, index) in historyList" :key="index"
               @click="selectRecord(index)">
               <el-icon style="
-                      width: 24px;
-                      height: 32px;
-                      color: #666666;
-                      margin-right: 0.5vw;
-                    ">
+                          width: 24px;
+                          height: 32px;
+                          color: #666666;
+                          margin-right: 0.5vw;
+                        ">
                 <ChatSquare style="width: 24px; height: 32px" />
               </el-icon>
               <div class="max-w-[260px] truncate">{{ item.title }}</div>
@@ -94,7 +94,7 @@
                   <h3 style="font-weight: bold" class="ml-[0.5vw]">MyChat</h3>
                 </div>
                 <div class="flex items-center justify-around">
-                  <div class="empty_item p-[1.5vw] w-[25%] h-[400px]" style="border-radius: 16px">
+                  <div class="empty_item p-[1.5vw] w-[25%] " style="border-radius: 16px">
                     <img src="../assets/hb.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0" />
                     <div class="mt-[2vh]">
                       <div class="empty_item_line">
@@ -111,7 +111,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="empty_item p-[1.5vw] h-[42vh] w-[25%] h-[400px]" style="border-radius: 16px">
+                  <div class="empty_item p-[1.5vw]  w-[25%] " style="border-radius: 16px">
                     <img src="../assets/shu.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0" />
                     <div class="mt-[2vh]">
                       <div class="empty_item_line">
@@ -128,7 +128,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="empty_item p-[1.5vw] h-[42vh] w-[25%] h-[400px]" style="border-radius: 16px">
+                  <div class="empty_item p-[1.5vw]  w-[25%] " style="border-radius: 16px">
                     <img src="../assets/meting.png" alt="" class="w-[2vw] h-[2vw] mx-auto my-0" />
                     <div class="mt-[2vh]">
                       <div class="empty_item_line">
