@@ -2,7 +2,8 @@
   <div class="h-[100%]">
     <div class="flex h-[100%] w-[100%]">
       <!-- 左边 -->
-      <div class="aside_left min-w-[384px] h-[100%] pb-[2vh] pt-[2vh] relative flex flex-col overflow-hidden"
+      <div
+        class="aside_left  h-[100%] pb-[2vh] pt-[2vh] relative flex flex-col overflow-hidden min-w-[301.59px] max-w-[301.59px]"
         :style="dArrowLeft">
         <div class="dArrowLeft cursor-pointer" @click="packUp" v-if="!dArrowLeft">
           <el-icon>
@@ -19,11 +20,11 @@
               :class="item.checked ? 'text-[#409eff]' : ''" v-for="(item, index) in historyList" :key="index"
               @click="selectRecord(index)">
               <el-icon style="
-                          width: 24px;
-                          height: 32px;
-                          color: #666666;
-                          margin-right: 0.5vw;
-                        ">
+                                  width: 24px;
+                                  height: 32px;
+                                  color: #666666;
+                                  margin-right: 0.5vw;
+                                ">
                 <ChatSquare style="width: 24px; height: 32px" />
               </el-icon>
               <div class="max-w-[260px] truncate">{{ item.title }}</div>
