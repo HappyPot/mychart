@@ -20,11 +20,11 @@
               :class="item.checked ? 'text-[#409eff]' : ''" v-for="(item, index) in historyList" :key="index"
               @click="selectRecord(index)">
               <el-icon style="
-                                  width: 24px;
-                                  height: 32px;
-                                  color: #666666;
-                                  margin-right: 0.5vw;
-                                ">
+                                                                          width: 24px;
+                                                                          height: 32px;
+                                                                          color: #666666;
+                                                                          margin-right: 0.5vw;
+                                                                        ">
                 <ChatSquare style="width: 24px; height: 32px" />
               </el-icon>
               <div class="max-w-[260px] truncate">{{ item.title }}</div>
@@ -59,13 +59,31 @@
         </div>
         <!-- 导航 -->
         <div class="nav flex justify-between items-center">
-          <div class="flex items-center">
-            <el-image style="width: 35px; height: 35px; border-radius: 100%" :src="url" :fit="fit" />
-            <span class="ml-2 text-[#666666]">Jumms</span>
-          </div>
           <div class="cursor-pointer" @click="toggle()">
             <Sunny style="width: 24px; height: 32px" v-if="!isDark" />
             <Moon style="width: 24px; height: 32px" class="bg-black" v-else />
+          </div>
+          <div></div>
+          <div v-if="!token">
+            <el-button type="primary" plain @click="loginShow">登录</el-button>
+          </div>
+          <div class="flex items-center" v-else>
+            <el-image style="width: 35px; height: 35px;margin-right: 10px; border-radius: 100%" :src="url" />
+            <el-dropdown trigger="click">
+              <span class="el-dropdown-link">
+                Jumms<el-icon class="el-icon--right"><arrow-down /></el-icon>
+              </span>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item :icon="User">
+                    个人中心
+                  </el-dropdown-item>
+                  <el-dropdown-item :icon="SwitchButton">
+                    退出登录
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
           </div>
         </div>
         <!-- 内容 -->
@@ -163,6 +181,7 @@
                 <el-button type="primary" :icon="Search">Search</el-button>
               </div> -->
             <el-button type="primary" plain @click="putQuestions">提问</el-button>
+            <el-button type="primary" plain @click="uploadFile">上传文件</el-button>
           </div>
         </div>
       </div>
@@ -189,7 +208,7 @@
 import { onMounted, ref, reactive, nextTick, toRaw } from "vue";
 import { useToggle } from "@vueuse/shared";
 import { useDark } from "@vueuse/core";
-import { Sunny, Moon, Plus } from "@element-plus/icons-vue";
+import { Sunny, Moon, Plus, User, SwitchButton } from "@element-plus/icons-vue";
 import { ElMessage } from "element-plus";
 import tx from "../assets/tx.png";
 const url = ref(tx);
@@ -347,6 +366,18 @@ const selectRecord = (index) => {
 const newChat = () => {
   qaList.value = [];
 };
+/**
+ * 登录
+ */
+const loginShow = () => {
+  centerDialogVisible.value = true;
+}
+/**
+ * 上传文件
+ */
+const uploadFile=()=>{
+  
+}
 </script>
 <style lang="scss" scoped>
 .dArrowLeft {
