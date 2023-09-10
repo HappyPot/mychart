@@ -20,19 +20,19 @@
               :class="item.checked ? 'text-[#409eff]' : ''" v-for="(item, index) in historyList" :key="index"
               @click="selectRecord(index)">
               <el-icon style="
-                                                                          width: 24px;
-                                                                          height: 32px;
-                                                                          color: #666666;
-                                                                          margin-right: 0.5vw;
-                                                                        ">
+                            width: 24px;
+                            height: 32px;
+                            color: #666666;
+                            margin-right: 0.5vw;
+                          ">
                 <ChatSquare style="width: 24px; height: 32px" />
               </el-icon>
               <div class="max-w-[260px] truncate">{{ item.title }}</div>
               <el-popconfirm title="Are you sure to delete this?" @confirm="deleteHistory">
                 <template #reference>
-                  <div class="cursor-pointer">
+                  <div class="cursor-pointer" v-show="item.checked">
                     <el-icon style="display: block">
-                      <CircleClose />
+                      <Delete style="color:red" />
                     </el-icon>
                   </div>
                 </template>
@@ -78,7 +78,7 @@
                   <el-dropdown-item :icon="User">
                     个人中心
                   </el-dropdown-item>
-                  <el-dropdown-item :icon="SwitchButton">
+                  <el-dropdown-item :icon="SwitchButton" @click="loginout">
                     退出登录
                   </el-dropdown-item>
                 </el-dropdown-menu>
@@ -87,7 +87,7 @@
           </div>
         </div>
         <!-- 内容 -->
-        <div class="mt-[4vh] flex-1 h-[100%] overflow-hidden">
+        <div class="mt-[2vh] flex-1 h-[100%] overflow-hidden">
           <!-- 问题列表 -->
           <div class="my_question p-[2vw] pr-[1.5vw] h-[100%] flex" style="border-radius: 16px">
             <div ref="scrollContainer"
@@ -181,7 +181,15 @@
                 <el-button type="primary" :icon="Search">Search</el-button>
               </div> -->
             <el-button type="primary" plain @click="putQuestions">提问</el-button>
-            <el-button type="primary" plain @click="uploadFile">上传文件</el-button>
+            <el-popover placement="top-start" title="" :width="200" trigger="hover">
+              <div><el-icon>
+                  <Document />
+                </el-icon> {{ upload.fileValue }} </div>
+              <template #reference>
+                <el-button v-if="upload.fileValue" type="primary" plain @click="uploadFile">上传文件</el-button>
+              </template>
+            </el-popover>
+            <el-button v-if="!upload.fileValue" type="primary" plain @click="uploadFile">上传文件</el-button>
           </div>
         </div>
       </div>
@@ -202,6 +210,7 @@
         <el-button type="primary" @click="login"> 登录 </el-button>
       </div>
     </el-dialog>
+    <input style="position: fixed;width:0;height:0" type="file" ref="uploadRef" @change="handleFileUpload">
   </div>
 </template>
 <script setup>
@@ -221,6 +230,12 @@ const isDark = useDark({
   valueLight: "light",
 });
 const toggle = useToggle(isDark);
+const uploadRef = ref(null)
+// 文件对象
+const upload = reactive({
+  fileValue: null
+})
+
 // 登录需要传的参数
 const form = reactive({
   name: "",
@@ -280,11 +295,54 @@ const open = () => {
  */
 const getHistoryList = () => {
   // 假数据以下（编写接口位置）
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 5; i++) {
     let obj = {
       checked: false,
       title: `Element,一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库 指南
               了解设计指南,帮助产品设计人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体`,
+      qaList: [{
+        type: "q",
+        value: "这是我的问题",
+      }, {
+        type: "a",
+        value:
+          "人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体",
+      }, {
+        type: "q",
+        value: "这是我的问题",
+      }, {
+        type: "a",
+        value:
+          "人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体",
+      }, {
+        type: "q",
+        value: "这是我的问题",
+      }, {
+        type: "a",
+        value:
+          "人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体",
+      }, {
+        type: "q",
+        value: "这是我的问题",
+      }, {
+        type: "a",
+        value:
+          "人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体",
+      }, {
+        type: "q",
+        value: "这是我的问题",
+      }, {
+        type: "a",
+        value:
+          "人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体",
+      }, {
+        type: "q",
+        value: "这是我的问题",
+      }, {
+        type: "a",
+        value:
+          "人员搭建逻辑清晰、结构合理且高效易用的产品。 查看详情 组件 使用组件 Demo 快速体",
+      }]
     };
     historyList.value.push(obj);
   }
@@ -358,7 +416,10 @@ const scrollToBottom = () => {
 const selectRecord = (index) => {
   historyList.value.map((item) => (item["checked"] = false));
   historyList.value[index]["checked"] = true;
-  console.log(toRaw(historyList.value));
+  qaList.value = historyList.value[index]["qaList"]
+  nextTick(() => {
+    scrollToBottom();
+  });
 };
 /**
  * 新建对话
@@ -373,10 +434,25 @@ const loginShow = () => {
   centerDialogVisible.value = true;
 }
 /**
+ * 退出登录
+ */
+const loginout = () => {
+  token.value = ''
+}
+/**
  * 上传文件
  */
-const uploadFile=()=>{
-  
+const uploadFile = () => {
+  uploadRef.value.click()
+}
+/**
+ * 上传文件处理
+ */
+const handleFileUpload = (e) => {
+  const currentTarget = e.target.files
+  const files = Array.from(currentTarget);
+  upload.fileValue = files[0].name
+  console.log(toRaw(files))
 }
 </script>
 <style lang="scss" scoped>
