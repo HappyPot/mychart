@@ -443,7 +443,7 @@ const loginout = () => {
  * 上传文件
  */
 const uploadFile = () => {
-  uploadRef.value.click()
+ heig
 }
 /**
  * 上传文件处理
