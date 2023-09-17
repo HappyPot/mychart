@@ -210,7 +210,7 @@
         <el-button type="primary" @click="login"> 登录 </el-button>
       </div>
     </el-dialog>
-    <input style="position: fixed;width:0;height:0" type="file" ref="uploadRef" @change="handleFileUpload">
+    <input multiple style="position: fixed;width:0;height:0" type="file" ref="uploadRef"  @change="handleFileUpload">
   </div>
 </template>
 <script setup>
