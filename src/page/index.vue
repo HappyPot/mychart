@@ -97,13 +97,13 @@
                 <div v-for="(item, index) in qaList" :key="index">
                   <div class="mb-[1.5vh]" v-if="item.type == 'q'">
                     <el-tag effect="dark" round type="success">问题：</el-tag>
-                    <div class="p-[0.5vw]">{{ item.value }}</div>
+                    <div class="p-[0.5vw]" v-html="item.value"></div>
                   </div>
                   <div class="my_answer p-[1vw] mb-[1.5vh]" style="border-radius: 16px" v-if="item.type == 'a'">
                     <div class="">
                       <el-tag effect="dark" round>回答：</el-tag>
                     </div>
-                    <div class="p-[0.5vw]">{{ item.value }}</div>
+                    <div class="p-[0.5vw]" v-html="item.value"></div>
                   </div>
                 </div>
               </template>
