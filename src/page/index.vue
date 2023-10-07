@@ -60,7 +60,7 @@
         <!-- 导航 -->
         <div class="nav flex justify-between items-center">
           <div class="cursor-pointer" @click="toggle()">
-            <Sunny style="width: 24px; height: 32px" v-if=3,qingc户"!isDark" />
+            <Sunny style="width: 24px; height: 32px" v-if="!isDark" />
             <Moon style="width: 24px; height: 32px" class="bg-black" v-else />
           </div>
           <div></div>
