@@ -3,7 +3,7 @@
     <div class="flex h-[100%] w-[100%]">
       <!-- 左边 -->
       <div
-        class="aside_left  h-[100%] pb-[2vh] pt-[2vh] relative flex flex-col overflow-hidden min-w-[301.59px] max-w-[301.59px]"
+        class="aside_left  h-[100%] pb-[2vh] pt-[2vh] relative flex flex-col overflow-hidden min-w-[301.59px] max-w-[366.59px]"
         :style="dArrowLeft">
         <div class="dArrowLeft cursor-pointer" @click="packUp" v-if="!dArrowLeft">
           <el-icon>
