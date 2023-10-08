@@ -2,57 +2,55 @@
   <div class="h-[100%]">
     <div class="flex h-[100%] w-[100%]">
       <!-- 左边 -->
-      <div class="aside_left_wrap pl-[1vw] pt-[2.2vh] pb-[2.2vh]">
-        <div
-          class="aside_left h-[100%] pb-[2vh] pt-[2vh] relative flex flex-col overflow-hidden min-w-[301.59px] max-w-[366.59px]"
-          :style="dArrowLeft">
-          <div class="dArrowLeft cursor-pointer" @click="packUp" v-if="!dArrowLeft">
-            <el-icon>
-              <DArrowLeft />
-            </el-icon>
-          </div>
-          <div class="">
-            <el-button type="primary" :icon="Plus" size="large" style="width: 200px; margin: 0 auto; display: flex" plain
-              @click="newChat">New Chat</el-button>
-          </div>
-          <div class="mt-[2vh] h-[100%] flex-1 overflow-hidden">
-            <div class="h-[100%] overflow-auto my_scroll_left">
-              <div class="flex items-center mx-[10px] my-[0px] px-[12px] py-[10px] cursor-pointer"
-                :class="item.checked ? 'text-[#409eff]' : ''" v-for="(item, index) in historyList" :key="index"
-                @click="selectRecord(index)">
-                <el-icon style="
-                                width: 24px;
-                                height: 32px;
-                                color: #666666;
-                                margin-right: 0.5vw;
-                              ">
-                  <ChatSquare style="width: 24px; height: 32px" />
-                </el-icon>
-                <div class="max-w-[260px] truncate">{{ item.title }}</div>
-                <el-popconfirm title="Are you sure to delete this?" @confirm="deleteHistory">
-                  <template #reference>
-                    <div class="cursor-pointer" v-show="item.checked">
-                      <el-icon style="display: block">
-                        <Delete style="color:red" />
-                      </el-icon>
-                    </div>
-                  </template>
-                </el-popconfirm>
-              </div>
+      <div
+        class="aside_left  h-[100%] pb-[2vh] pt-[2vh] relative flex flex-col overflow-hidden min-w-[301.59px] max-w-[366.59px]"
+        :style="dArrowLeft">
+        <div class="dArrowLeft cursor-pointer" @click="packUp" v-if="!dArrowLeft">
+          <el-icon>
+            <DArrowLeft />
+          </el-icon>
+        </div>
+        <div class="">
+          <el-button type="primary" :icon="Plus" size="large" style="width: 200px; margin: 0 auto; display: flex" plain
+            @click="newChat">New Chat</el-button>
+        </div>
+        <div class="mt-[2vh] h-[100%] flex-1 overflow-hidden">
+          <div class="h-[100%] overflow-auto my_scroll_left">
+            <div class="flex items-center mx-[10px] my-[0px] px-[12px] py-[10px] cursor-pointer"
+              :class="item.checked ? 'text-[#409eff]' : ''" v-for="(item, index) in historyList" :key="index"
+              @click="selectRecord(index)">
+              <el-icon style="
+                              width: 24px;
+                              height: 32px;
+                              color: #666666;
+                              margin-right: 0.5vw;
+                            ">
+                <ChatSquare style="width: 24px; height: 32px" />
+              </el-icon>
+              <div class="max-w-[260px] truncate">{{ item.title }}</div>
+              <el-popconfirm title="Are you sure to delete this?" @confirm="deleteHistory">
+                <template #reference>
+                  <div class="cursor-pointer" v-show="item.checked">
+                    <el-icon style="display: block">
+                      <Delete style="color:red" />
+                    </el-icon>
+                  </div>
+                </template>
+              </el-popconfirm>
             </div>
           </div>
-          <div class="">
-            <el-divider />
-            <el-button style="width: 200px; margin: 0 auto; display: flex" type="success" size="large">
-              Upgrade to plus now</el-button>
-            <div class="font-semibold text-center" style="width: 200px; margin: 0 auto; margin-top: 1vh">
-              $20 per month
-            </div>
+        </div>
+        <div class="">
+          <el-divider />
+          <el-button style="width: 200px; margin: 0 auto; display: flex" type="success" size="large">
+            Upgrade to plus now</el-button>
+          <div class="font-semibold text-center" style="width: 200px; margin: 0 auto; margin-top: 1vh">
+            $20 per month
           </div>
         </div>
       </div>
       <!-- 右边 -->
-      <div class="aside_right flex-col flex flex-1 min-w-[1135px] p-[2.2vh] pl-[1vw] pr-[1vw] relative"
+      <div class="aside_right flex-col flex flex-1 min-w-[1135px] p-[2.2vh] pl-[2vw] pr-[2vw] relative"
         :style="dArrowRight">
         <div class="dArrowRight cursor-pointer" @click="open" v-if="dArrowLeft">
           <el-icon>
@@ -212,7 +210,7 @@
         <el-button type="primary" @click="login"> 登录 </el-button>
       </div>
     </el-dialog>
-    <input multiple style="position: fixed;width:0;height:0" type="file" ref="uploadRef" @change="handleFileUpload">
+    <input multiple style="position: fixed;width:0;height:0" type="file" ref="uploadRef"  @change="handleFileUpload">
   </div>
 </template>
 <script setup>
@@ -445,7 +443,7 @@ const loginout = () => {
  * 上传文件
  */
 const uploadFile = () => {
-  heigyong
+ heigyong
 }
 /**
  * 上传文件处理
@@ -475,9 +473,6 @@ const handleFileUpload = (e) => {
 .aside_left,
 .aside_right {
   transition: 0.5s all ease;
-}
-.aside_left{
-  border-radius: 16px;
 }
 
 .empty_item_line {
